@@ -20,20 +20,26 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { timeHours } from "@/data/data";
 import { FreeHour } from "@/lib/schema";
+import { useParams } from "next/navigation";
 
 import React, { useEffect, useState } from "react";
 
 const GenerateSchedule = () => {
-  const [adminId, setAdminId] = useState("");
-  const [dayOrder, setDayOrder] = useState("0");
+  const params = useParams();
+  const idParam = params.id || "";
+  const paramId = Array.isArray(idParam) ? idParam[0] : idParam;
+
+  const [id, setId] = useState<string>(paramId);
+  const [dayOrder, setDayOrder] = useState("DO1");
 
   const [response, setResponse] = useState<FreeHour>();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const response = await getSchedule({ adminId, dayOrder });
+    const response = await getSchedule({ id, dayOrder });
 
     setResponse(response.data);
   };
@@ -42,22 +48,23 @@ const GenerateSchedule = () => {
     console.log(response);
   }, [response]);
   return (
-    <div className="flex flex-col w-full h-full gap-8 justify-center items-center">
+    <div className="flex flex-col w-full h-full gap-8 justify-start items-center">
       <form
-        className="flex flex-col w-full h-full gap-8 justify-center items-center"
+        className="flex flex-col w-full max-w-md gap-6 mb-8"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-2xl">Get a schedule</h1>
-        <div>
-          <Label htmlFor="title">Admin ID</Label>
+        <h1 className="text-2xl font-bold text-center">Generate Schedule</h1>
+        <div className="w-full flex flex-col gap-4 justify-start items-start">
+          <Label htmlFor="title">Form ID</Label>
           <Input
-            name="adminID"
-            value={adminId}
-            onChange={(e) => setAdminId(e.target.value)}
+            name="id"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
             required
+            className=""
           />
         </div>
-        <div>
+        <div className="w-full flex flex-col gap-4 justify-start items-start">
           <Label htmlFor="dayOrder">Day Order</Label>
           <Select
             name="dayOrder"
@@ -66,7 +73,7 @@ const GenerateSchedule = () => {
               setDayOrder(value);
             }}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-full">
               <SelectValue placeholder="Day Order" />
             </SelectTrigger>
             <SelectContent>
@@ -78,14 +85,20 @@ const GenerateSchedule = () => {
             </SelectContent>
           </Select>
         </div>
-        <Button type="submit">Create</Button>
+        <Button
+          type="submit"
+          className="flex w-full justify-center items-center"
+        >
+          Create
+        </Button>
       </form>
+
       <Table>
-        {/* <TableCaption></TableCaption> */}
+        <TableCaption>Helpdesk Schedule for {dayOrder}</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Time Slot</TableHead>
-            <TableHead>Duty</TableHead>
+            <TableHead className="w-[200px]">Time Slot</TableHead>
+            <TableHead className="w-fit">Duties</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -94,9 +107,11 @@ const GenerateSchedule = () => {
                 .sort()
                 .map((row) => (
                   <TableRow key={row}>
-                    <TableCell>{row}</TableCell>
+                    <TableCell>{timeHours[row]}</TableCell>
                     {response[row].map((name) => (
-                      <TableCell key={`${row} + ${name}`}>{name}</TableCell>
+                      <TableCell className="w-fit" key={`${row} + ${name}`}>
+                        {name}
+                      </TableCell>
                     ))}
                   </TableRow>
                 ))

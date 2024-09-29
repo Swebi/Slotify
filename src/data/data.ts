@@ -1,4 +1,4 @@
-import { TimeSlot } from "@/lib/schema";
+import { TimeSlot, HourLabel } from "@/lib/schema";
 
 export const timeSlots: TimeSlot[] = [
   { label: "8:00 - 8:50", value: "0800" },
@@ -13,15 +13,15 @@ export const timeSlots: TimeSlot[] = [
   { label: "16:00 - 16:50", value: "1600" },
 ];
 
-export const timeHours = [
-  "0800",
-  "0850",
-  "0945",
-  "1040",
-  "1135",
-  "1230",
-  "1325",
-  "1420",
-  "1510",
-  "1600",
-];
+export const timeHours: HourLabel = {
+  "0800": "08:00 - 08:50",
+  "0850": "08:50 - 09:40",
+  "0945": "09:45 - 10:35",
+  "1040": "10:40 - 11:30",
+  "1135": "11:35 - 12:25",
+  "1230": "12:30 - 13:20",
+  "1325": "13:25 - 14:15",
+  "1420": "14:20 - 15:10",
+  "1510": "15:10 - 16:00",
+  "1600": "16:00 - 16:50",
+};

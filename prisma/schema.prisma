@@ -12,7 +12,6 @@ datasource db {
 
 model Form {
   id          String     @id @unique @default(cuid())
-  adminId     String     @unique @default(cuid())
   title       String
   description String
   Response    Response[]
@@ -26,4 +25,6 @@ model Response {
   regNo    String
   dayOrder String
   freeHour String
+
+  @@unique([regNo, dayOrder, freeHour])
 }
