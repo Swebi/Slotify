@@ -63,7 +63,8 @@ const CreateForm = () => {
           description: "The form ID has been copied to your clipboard.",
           className: "dark text-white border-white/10",
         });
-      } catch (err) {
+      } catch (error) {
+        console.log(error);
         toast({
           title: "Failed to copy",
           description:

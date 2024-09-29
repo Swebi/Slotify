@@ -3,7 +3,6 @@
 import { timeHours } from "@/data/data";
 import prisma from "@/lib/db";
 import { FreeHour } from "@/lib/schema";
-import { revalidatePath } from "next/cache";
 
 export async function createResponse({
   freeHours,
@@ -103,7 +102,7 @@ export async function getSchedule({
     });
 
     if (formCheck) {
-      let data: FreeHour = {
+      const data: FreeHour = {
         "0800": [],
         "0850": [],
         "0945": [],

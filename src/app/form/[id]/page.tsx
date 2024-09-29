@@ -119,7 +119,7 @@ const FormId = () => {
                   value={timeSlot.value}
                   name={`${dayOrder}` + `${timeSlot.value}`}
                   onChange={(e) => {
-                    let updatedHours = freeHours;
+                    const updatedHours = freeHours;
 
                     if (updatedHours[dayOrder].includes(e.target.value)) {
                       updatedHours[dayOrder] = updatedHours[dayOrder].filter(
@@ -145,5 +145,4 @@ const FormId = () => {
     </form>
   );
 };
-
 export default FormId;

@@ -1,5 +1,4 @@
 import React from "react";
-import { FaDatabase } from "react-icons/fa";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { SiDatabricks } from "react-icons/si";
