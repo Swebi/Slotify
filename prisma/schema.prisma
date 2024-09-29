@@ -26,5 +26,5 @@ model Response {
   dayOrder String
   freeHour String
 
-  @@unique([regNo, dayOrder, freeHour])
+  @@unique([formId, regNo, dayOrder, freeHour])
 }
