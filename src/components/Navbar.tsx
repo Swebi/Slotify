@@ -11,23 +11,31 @@ const Navbar = async () => {
       <Link href="/">
         <div className="flex justify-center items-center gap-2">
           {/* <SiDatabricks className="text-3xl text-white" /> */}
-          <Image src={logo} height={0} width={0} className="h-10 w-10" alt="" />
-          <h1 className="text-3xl font-medium text-white">Slotify</h1>
+          <Image
+            src={logo}
+            height={0}
+            width={0}
+            className="h-8 w-8 md:h-10 md:w-10"
+            alt=""
+          />
+          <h1 className="text-xl md:text-3xl font-medium text-white">
+            Slotify
+          </h1>
         </div>
       </Link>
 
-      <div className="flex justify-center items-center gap-1 md:gap-4">
+      <div className="flex justify-center items-center gap-3 md:gap-4">
         {/* <Link href="/">
           <Button className="bg-black"> Home </Button>
         </Link> */}
         <Link href="/dashboard">
-          <p className=" text-white text-sm md:text-base"> Dashboard </p>
+          <p className=" text-white text-xs md:text-base"> Dashboard </p>
         </Link>
         <Link href="/create">
-          <p className=" text-white text-sm md:text-base"> Create </p>
+          <p className=" text-white text-xs md:text-base"> Create </p>
         </Link>
         <Link href="/generate">
-          <p className=" text-white text-sm md:text-base"> Generate </p>
+          <p className=" text-white text-xs md:text-base"> Generate </p>
         </Link>
       </div>
     </div>

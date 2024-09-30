@@ -106,10 +106,7 @@ const GenerateSchedule = () => {
             </SelectContent>
           </Select>
         </div>
-        <Button
-          type="submit"
-          className="flex w-full py-6 bg-blue-500 justify-center items-center"
-        >
+        <Button type="submit" className="bg-blue-500 hover:bg-blue-500/90 py-6">
           Generate
         </Button>
       </form>
