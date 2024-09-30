@@ -75,13 +75,16 @@ const FormId = () => {
 
   return (
     <form
-      className="flex flex-col w-full h-full gap-8 justify-center items-center max-w-2xl mx-auto p-6"
+      className="flex flex-col w-full h-full gap-8 justify-center items-center max-w-2xl mx-auto p-8 mt-6 border bg-white rounded-lg shadow"
       onSubmit={handleSubmit}
     >
-      <h1 className="text-4xl font-bold">Title: {formInfo?.title}</h1>
-      <h2 className="text-2xl font-medium">
-        Description: {formInfo?.description}
-      </h2>
+      <h1 className="text-5xl text-blue-500 self-start font-bold">
+        Title:{" "}
+        <p className="text-4xl text-blue-400 font-medium">{formInfo?.title}</p>
+      </h1>
+      <h1 className="text-2xl self-start font-semibold">
+        Description: <p className="font-normal">{formInfo?.title}</p>
+      </h1>
 
       <div className="w-full">
         <Label htmlFor="name">Name</Label>
@@ -139,7 +142,7 @@ const FormId = () => {
           </div>
         </div>
       ))}
-      <Button type="submit" className="w-full">
+      <Button type="submit" className="w-full py-6 bg-blue-500">
         Submit
       </Button>
     </form>
