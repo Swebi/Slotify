@@ -26,7 +26,7 @@ export const timeHours: HourLabel = {
   "1600": "16:00 - 16:50",
 };
 
-export const samplResponse: any = {
+export const sampleResponse: any = {
   "1040": ["Jake", "Terry", "Amy"],
   "1135": ["Holt"],
   "1230": [],
