@@ -78,10 +78,10 @@ const CreateForm = () => {
   return (
     <div className="flex flex-col w-full h-full gap-8 justify-center items-center">
       <form
-        className="flex flex-col w-full max-w-md gap-6 bg-white border p-10 mt-10 rounded-lg"
+        className="flex flex-col w-full max-w-md gap-8 bg-white border p-16 mt-20 rounded-lg"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-2xl font-bold text-center">Create a new form</h1>
+        <h1 className="text-3xl font-bold text-center ">Create a new form</h1>
         <div>
           <Label htmlFor="title">Title</Label>
           <Input
@@ -93,7 +93,10 @@ const CreateForm = () => {
           />
         </div>
         <div>
-          <Label htmlFor="description">Set Description</Label>
+          <Label htmlFor="description" className="">
+            {" "}
+            Description
+          </Label>
           <Input
             id="description"
             name="description"
@@ -102,7 +105,9 @@ const CreateForm = () => {
             required
           />
         </div>
-        <Button type="submit">Create</Button>
+        <Button type="submit" className="bg-blue-500 hover:bg-blue-500/90 py-6">
+          Create
+        </Button>
       </form>
       {formId && (
         <div className="flex items-center gap-2">
@@ -110,7 +115,7 @@ const CreateForm = () => {
           <Button
             onClick={copyToClipboard}
             variant="outline"
-            className="flex gap-1 justify-center items-center"
+            className="flex gap-1 justify-center items-center gray-50"
           >
             <IoCopy className="h-4 w-4" />
             <p className="text-xs">Copy </p>
@@ -120,7 +125,7 @@ const CreateForm = () => {
               router.push(`/form/${formId}`);
             }}
             variant="outline"
-            className="flex gap-1 justify-center items-center"
+            className="flex gap-1 justify-center items-center bg-gray-50"
           >
             <IoIosLink className="h-4 w-4" />
             <p className="text-xs">Go</p>

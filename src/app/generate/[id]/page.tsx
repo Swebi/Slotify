@@ -1,5 +1,6 @@
 "use client";
 import { createForm, getSchedule } from "@/actions/actions";
+import Spinner from "@/components/Spinner";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -21,8 +22,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { timeHours } from "@/data/data";
+import { useToast } from "@/hooks/use-toast";
 import { FreeHour } from "@/lib/schema";
+import { ToastAction } from "@radix-ui/react-toast";
 import { useParams } from "next/navigation";
+import router from "next/router";
 
 import React, { useEffect, useState } from "react";
 
@@ -33,27 +37,43 @@ const GenerateSchedule = () => {
 
   const [id, setId] = useState<string>(paramId);
   const [dayOrder, setDayOrder] = useState("DO1");
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   const [response, setResponse] = useState<FreeHour>();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
+    setLoading(true);
     const response = await getSchedule({ id, dayOrder });
+    if (response.success) {
+      setResponse(response.data);
+      toast({
+        title: "Schedule generated successfully",
+        className: "dark text-white border-white/10",
+        // action: <ToastAction altText="Generate">Go</ToastAction>,
+      });
+    } else {
+      setResponse(response.data);
+      toast({
+        title: "Invalid form ID",
+        description: "Enter a valid form id",
+        variant: "destructive",
+      });
+    }
 
-    setResponse(response.data);
+    setLoading(false);
   };
 
-  useEffect(() => {
-    console.log(response);
-  }, [response]);
   return (
     <div className="flex flex-col w-full h-full gap-8 justify-start items-center">
       <form
-        className="flex flex-col w-full max-w-md gap-6 mb-8"
+        className="flex flex-col w-full max-w-md gap-8 bg-white border p-16 mt-20 mb-10 rounded-lg"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-2xl font-bold text-center">Generate Schedule</h1>
+        <h1 className="text-2xl font-bold text-center text-black">
+          Generate Schedule
+        </h1>
         <div className="w-full flex flex-col gap-4 justify-start items-start">
           <Label htmlFor="title">Form ID</Label>
           <Input
@@ -87,13 +107,13 @@ const GenerateSchedule = () => {
         </div>
         <Button
           type="submit"
-          className="flex w-full justify-center items-center"
+          className="flex w-full py-6 bg-blue-500 justify-center items-center"
         >
-          Create
+          Generate
         </Button>
       </form>
 
-      <Table>
+      <Table className="min-h-[500px]">
         <TableCaption>Helpdesk Schedule for {dayOrder}</TableCaption>
         <TableHeader>
           <TableRow>
@@ -102,20 +122,30 @@ const GenerateSchedule = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {response
-            ? Object.keys(response)
-                .sort()
-                .map((row) => (
-                  <TableRow key={row}>
-                    <TableCell>{timeHours[row]}</TableCell>
-                    {response[row].map((name) => (
-                      <TableCell className="w-fit" key={`${row} + ${name}`}>
-                        {name}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-            : ""}
+          {response && !loading ? (
+            Object.keys(response)
+              .sort()
+              .map((row) => (
+                <TableRow key={row}>
+                  <TableCell>{timeHours[row]}</TableCell>
+                  {response[row].map((name, index) => (
+                    <TableCell className="w-fit" key={`${index} + ${name}`}>
+                      {name}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+          ) : (
+            <TableRow key={0}>
+              <TableCell className="">
+                {loading ? "Loading ..." : "Enter a valid Form ID"}
+              </TableCell>
+              <TableCell className="">
+                {" "}
+                {loading ? <Spinner /> : "Null"}
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </div>
