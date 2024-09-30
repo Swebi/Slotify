@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const Navbar = async () => {
   return (
-    <div className="flex w-[85%] mx-auto  rounded-full justify-between py-4 px-8 mt-6  bg-[#202020]  ">
+    <div className="flex w-[85%] mx-auto  rounded-full justify-between py-4 px-4 md:px-8 mt-6  bg-[#202020]  ">
       <Link href="/">
         <div className="flex justify-center items-center gap-2">
           {/* <SiDatabricks className="text-3xl text-white" /> */}
@@ -16,15 +16,18 @@ const Navbar = async () => {
         </div>
       </Link>
 
-      <div className="flex justify-center items-center gap-3">
+      <div className="flex justify-center items-center gap-1 md:gap-4">
         {/* <Link href="/">
           <Button className="bg-black"> Home </Button>
         </Link> */}
+        <Link href="/dashboard">
+          <p className=" text-white text-sm md:text-base"> Dashboard </p>
+        </Link>
         <Link href="/create">
-          <Button className="bg-black"> Create </Button>
+          <p className=" text-white text-sm md:text-base"> Create </p>
         </Link>
         <Link href="/generate">
-          <Button className="bg-black"> Generate </Button>
+          <p className=" text-white text-sm md:text-base"> Generate </p>
         </Link>
       </div>
     </div>

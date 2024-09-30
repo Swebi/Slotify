@@ -47,6 +47,7 @@ const GenerateSchedule = () => {
     setLoading(true);
     const response = await getSchedule({ id, dayOrder });
     if (response.success) {
+      console.log(response.data);
       setResponse(response.data);
       toast({
         title: "Schedule generated successfully",

@@ -81,8 +81,10 @@ const CreateForm = () => {
         className="flex flex-col w-full max-w-md gap-8 bg-white border p-16 mt-20 rounded-lg"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-3xl font-bold text-center ">Create a new form</h1>
-        <div>
+        <h1 className="text-2xl font-bold text-center text-black">
+          Create a new form
+        </h1>
+        <div className="w-full flex flex-col gap-4 justify-start items-start">
           <Label htmlFor="title">Title</Label>
           <Input
             id="title"
@@ -92,7 +94,7 @@ const CreateForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="w-full flex flex-col gap-4 justify-start items-start">
           <Label htmlFor="description" className="">
             {" "}
             Description
@@ -110,12 +112,12 @@ const CreateForm = () => {
         </Button>
       </form>
       {formId && (
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col md:flex-row justify-center backdrop:items-center gap-2 ">
           <Input value={formId} className="w-64" />
           <Button
             onClick={copyToClipboard}
             variant="outline"
-            className="flex gap-1 justify-center items-center gray-50"
+            className="flex gap-1 justify-center items-center bg-gray-50"
           >
             <IoCopy className="h-4 w-4" />
             <p className="text-xs">Copy </p>

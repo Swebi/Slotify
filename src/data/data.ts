@@ -1,4 +1,4 @@
-import { TimeSlot, HourLabel } from "@/lib/schema";
+import { TimeSlot, HourLabel, FreeHour } from "@/lib/schema";
 
 export const timeSlots: TimeSlot[] = [
   { label: "8:00 - 8:50", value: "0800" },
@@ -24,4 +24,17 @@ export const timeHours: HourLabel = {
   "1420": "14:20 - 15:10",
   "1510": "15:10 - 16:00",
   "1600": "16:00 - 16:50",
+};
+
+export const sampleResponse: any = {
+  "1040": ["Suhayb", "Kshitij", "Speehaas"],
+  "1135": ["Sabarish"],
+  "1230": ["Suhayb"],
+  "1325": ["Sabarish", "Arul", "Kshitij"],
+  "1420": ["Sabarish"],
+  "1510": ["Suhayb", "Darshan"],
+  "1600": ["Arul"],
+  "0800": ["Suhayb", "Darshan", "Sabarish", "Arul"],
+  "0850": ["Suhayb", "Darshan", "Sabarish", "Arul"],
+  "0945": ["Kshitij", "Speehaas"],
 };
