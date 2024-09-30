@@ -78,7 +78,7 @@ const CreateForm = () => {
   return (
     <div className="flex flex-col w-full h-full gap-8 justify-center items-center">
       <form
-        className="flex flex-col w-full max-w-md gap-6"
+        className="flex flex-col w-full max-w-md gap-6 bg-white border p-10 mt-10 rounded-lg"
         onSubmit={handleSubmit}
       >
         <h1 className="text-2xl font-bold text-center">Create a new form</h1>
