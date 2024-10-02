@@ -28,9 +28,9 @@ const Navbar = async () => {
         {/* <Link href="/">
           <Button className="bg-black"> Home </Button>
         </Link> */}
-        <Link href="/dashboard">
+        {/* <Link href="/dashboard">
           <p className=" text-white text-xs md:text-base"> Dashboard </p>
-        </Link>
+        </Link> */}
         <Link href="/create">
           <p className=" text-white text-xs md:text-base"> Create </p>
         </Link>
