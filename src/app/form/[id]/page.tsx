@@ -83,7 +83,7 @@ const FormId = () => {
         <p className="text-4xl text-blue-400 font-medium">{formInfo?.title}</p>
       </h1>
       <h1 className="text-2xl self-start font-semibold">
-        Description: <p className="font-normal">{formInfo?.title}</p>
+        Description: <p className="font-normal">{formInfo?.description}</p>
       </h1>
 
       <div className="w-full">
