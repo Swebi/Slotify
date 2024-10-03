@@ -13,11 +13,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { sampleResponse, timeHours } from "@/data/data";
+import Link from "next/link";
 
 const Home = () => {
   return (
     <div className="flex flex-col lg:flex-row w-full min-h-screen">
-      <div className="flex flex-col w-full lg:w-[45%] p-6 lg:p-20 gap-4 justify-start">
+      <div className="flex flex-col w-full lg:w-[45%] p-6 lg:p-20 2xl:pt-36 gap-4 justify-start">
         <Image
           src={logo}
           height={80}
@@ -35,11 +36,13 @@ const Home = () => {
           schedules and share. <br className="hidden sm:inline" />
           Completely free and open source
         </p>
-        <Button className="bg-black text-xs md:text-sm w-fit py-5 px-7 mt-4">
-          Get Started
-        </Button>
+        <Link href="/create">
+          <Button className="bg-black text-xs md:text-sm w-fit py-5 px-7 mt-4">
+            Get Started
+          </Button>
+        </Link>
       </div>
-      <div className="flex flex-col w-full lg:w-[55%] p-6 lg:pt-20 overflow-x-auto">
+      <div className="flex flex-col w-full lg:w-[55%] p-6 lg:pt-20  2xl:pt-36 overflow-x-auto">
         <Table className="min-w-[500px]">
           <TableCaption>Helpdesk Schedule for Day Order 1</TableCaption>
           <TableHeader>
